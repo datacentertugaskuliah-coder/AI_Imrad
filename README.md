@@ -8,8 +8,7 @@
 4. **REAL MD generator**: `.md` berisi sitasi aktual dari CrossRef (jika di-fetch)
 5. **Dynamic year**: `datetime.now().year - 2` (auto-update tiap tahun)
 
-```
-Di share.streamlit.io → Settings → Secrets → set `ACCESS_KEY = "your_password"`
+
 
 ## Test ZERO-CLICK
 1. Upload naskah PDF/DOCX/TXT
