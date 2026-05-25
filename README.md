@@ -8,14 +8,6 @@
 4. **REAL MD generator**: `.md` berisi sitasi aktual dari CrossRef (jika di-fetch)
 5. **Dynamic year**: `datetime.now().year - 2` (auto-update tiap tahun)
 
-## Deploy
-```
-unzip research_workflow_streamlit_v9.zip
-cd research_workflow
-rm .streamlit/secrets.toml   # JANGAN push ke GitHub
-git init && git add . && git commit -m "v9 ZERO-CLICK + CrossRef"
-git remote add origin <your-repo>
-git push -u origin main
 ```
 Di share.streamlit.io → Settings → Secrets → set `ACCESS_KEY = "your_password"`
 
