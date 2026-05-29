@@ -10,13 +10,16 @@ def render():
     st.title("📑 Citation Manager v7 · M10 + M11 Core Intelligence")
     st.caption("50+ sitasi unik · APA 7th · 3 tahun terakhir · Section Gating · 6 fallback questions EN")
 
+    from core.data import get_valid_years
+    vy = get_valid_years()
     k1,k2,k3,k4,k5 = st.columns(5)
-    k1.metric("Min sitasi", str(CITATION_CONFIG["min_total"]), "unik")
-    k2.metric("Tahun valid", "2022-2024", "≤ 3 thn")
+    k1.metric("Total sitasi", str(CITATION_CONFIG["total_target"]),
+        f"{CITATION_CONFIG['min_total']}+{CITATION_CONFIG['target_journal_count']}")
+    k2.metric("Tahun valid", f"{vy[0]}-{vy[-1]}", "≤ 3 thn")
     k3.metric("Style", "APA 7th", "")
     k4.metric("Target jurnal",
-        f"{int(CITATION_CONFIG['target_journal_ratio_min']*100)}-{int(CITATION_CONFIG['target_journal_ratio_max']*100)}%",
-        "5-10 sitasi")
+        f"{int(CITATION_CONFIG['target_journal_ratio']*100)}%",
+        f"{CITATION_CONFIG['target_journal_count']} sitasi")
     k5.metric("Fallback Q (M11)", str(CITATION_CONFIG["fallback_questions"]),
         "EN, per bagian")
 
