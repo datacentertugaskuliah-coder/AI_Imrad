@@ -135,28 +135,45 @@ def deduplicate(citations: list) -> list:
 
 
 def build_citation_pool(topic: str, journal_issn: str = None,
-                         min_total: int = 50) -> dict:
+                         min_total: int = 50,
+                         target_journal_count: int = 10) -> dict:
     """
-    Build complete citation pool with target journal + general.
-    Returns dict with stats.
+    Build complete citation pool v15.
+    Strategy: BASE 50 sitasi umum + 20% × 50 = 10 dari jurnal target = 60 total.
+    Returns dict with stats and breakdown.
     """
     cy = datetime.now().year
     year_min = cy - 2
 
-    result = {"target_journal": [], "general": [], "total": 0, "errors": []}
+    result = {"target_journal": [], "general": [], "total": 0,
+               "errors": [], "config": {
+                   "base": min_total, "target_count": target_journal_count,
+                   "target_ratio": 0.20, "total_target": min_total + target_journal_count,
+               }}
 
-    # 1. Target journal citations (10-20%)
+    # 1. Target journal citations — FETCH DULU (10 sitasi)
     if journal_issn:
-        target_count = int(min_total * 0.15)  # 15% target
-        target_cits = fetch_from_journal(journal_issn, topic, target_count, year_min)
+        # Fetch slightly more for buffer (CrossRef may return fewer)
+        target_cits = fetch_from_journal(journal_issn, topic,
+                                          rows=target_journal_count + 5,
+                                          year_min=year_min)
+        target_cits = deduplicate(target_cits)[:target_journal_count]
+        # Tag setiap citation
+        for c in target_cits:
+            c["source_tag"] = "[TARGET-JOURNAL][TERVALIDASI]"
         result["target_journal"] = target_cits
 
-    # 2. General citations
-    general_needed = min_total - len(result["target_journal"]) + 10  # buffer
+    # 2. General citations — fetch sisa untuk lengkapi 50
+    general_needed = min_total + 10  # buffer untuk dedup
     general = fetch_citations_crossref(topic, year_min, cy, general_needed)
+    general = deduplicate(general)
     # Exclude duplicates of target
     target_dois = {c["doi"] for c in result["target_journal"]}
-    result["general"] = [c for c in general if c["doi"] not in target_dois]
+    general_filtered = [c for c in general if c["doi"] not in target_dois]
+    general_filtered = general_filtered[:min_total]
+    for c in general_filtered:
+        c["source_tag"] = "[CORE-DB][TERVALIDASI]"
+    result["general"] = general_filtered
 
     result["total"] = len(result["target_journal"]) + len(result["general"])
     return result

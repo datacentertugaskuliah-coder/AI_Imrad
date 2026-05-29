@@ -22,6 +22,13 @@ from executors.content_ratio     import (count_tables_and_figures,
                                             build_discussion_linker_text)
 from executors.reference_builder import (build_reference_list,
                                             generate_10_titles_q1)
+from executors.session_saver  import (export_session_to_json,
+                                        import_session_from_json,
+                                        get_session_summary)
+from executors.credit_form    import (render_credit_form,
+                                        generate_credit_statement,
+                                        validate_credit,
+                                        CREDIT_ROLES)
 
 _DEFAULTS = {
     "v9_topic":"","v9_method":"","v9_novelty":"","v9_quant":"","v9_keywords":"",
@@ -32,6 +39,7 @@ _DEFAULTS = {
     "v11_ref_filename":"","v11_style_filename":"",
     "v13_corpus_quant":"",
     "v14_content_ratio":{},"v14_result_titles":{},"v14_10_titles":[],
+    "v15_authors":[],"v15_credit_statement":"",
 }
 
 def _init():
@@ -111,18 +119,77 @@ def render():
             ok,msg=validate_gdrive_url(gurl); url_type,_=detect_gdrive_type(gurl)
             if ok:
                 st.success(f"{'📁' if url_type=='folder' else '📄'} {msg}")
-                if st.button("📥 Download dari GDrive",type="primary"):
+                st.caption("✨ v15 AUTO-READ: file akan otomatis di-parse + di-extract setelah download")
+                if st.button("📥 Download + Auto-Read dari GDrive",type="primary"):
                     if url_type=="folder":
-                        with st.spinner("Downloading folder..."):
+                        with st.spinner("Downloading folder + auto-reading semua file..."):
                             fl,err=fetch_folder_files(gurl)
                             if fl:
-                                for c,fn,_ in fl: add_file(fn,c,source="gdrive",source_url=gurl)
-                                st.success(f"✅ {len(fl)} file"); st.rerun()
+                                files_processed = 0
+                                naskah_assigned = False
+                                for c,fn,_ in fl:
+                                    add_file(fn,c,source="gdrive",source_url=gurl)
+                                    # v15: AUTO-READ setiap file
+                                    try:
+                                        # Auto-parse text
+                                        text_part, _ = extract_text(c, fn)
+                                        # Auto-extract quant from data files
+                                        dr = read_datafile_inplace(c, fn)
+                                        if dr.get("quant_extracted"):
+                                            prev = st.session_state.get("v13_corpus_quant","")
+                                            st.session_state["v13_corpus_quant"] = (
+                                                prev + " | " + dr["quant_extracted"] if prev else dr["quant_extracted"])
+                                            st.session_state["v9_quant"] = st.session_state["v13_corpus_quant"]
+                                        # Jika belum ada naskah utama dan file PDF/DOCX besar → assume naskah utama
+                                        if not naskah_assigned and not st.session_state["v9_main_text"] and len(text_part) > 1000:
+                                            sections = detect_sections(text_part)
+                                            extracted = auto_extract_all(sections)
+                                            for k,fld in [("v9_topic","topic"),("v9_method","method"),("v9_novelty","novelty"),("v9_quant","quant_data"),("v9_keywords","keywords")]:
+                                                if not st.session_state.get(k):
+                                                    st.session_state[k] = extracted[fld]["value"]
+                                            st.session_state["v9_main_text"] = text_part
+                                            st.session_state["v9_main_sections"] = sections
+                                            st.session_state["v9_main_filename"] = fn + " (from GDrive)"
+                                            st.session_state["v9_extracted_confidence"] = {k:v["confidence"] for k,v in extracted.items()}
+                                            naskah_assigned = True
+                                        files_processed += 1
+                                    except Exception as e:
+                                        pass
+                                st.success(f"✅ {len(fl)} file downloaded · {files_processed} auto-parsed")
+                                if naskah_assigned: st.info("📄 Naskah utama auto-assigned dari file pertama yang valid")
+                                st.rerun()
                             else: st.error(err)
                     else:
-                        with st.spinner("Downloading..."):
+                        with st.spinner("Downloading + auto-reading file..."):
                             c,fn,err=fetch_from_gdrive(gurl)
-                            if c: add_file(fn,c,source="gdrive",source_url=gurl); st.rerun()
+                            if c:
+                                add_file(fn,c,source="gdrive",source_url=gurl)
+                                # v15: AUTO-READ
+                                try:
+                                    text_part, _ = extract_text(c, fn)
+                                    dr = read_datafile_inplace(c, fn)
+                                    if dr.get("quant_extracted"):
+                                        prev = st.session_state.get("v13_corpus_quant","")
+                                        st.session_state["v13_corpus_quant"] = (
+                                            prev + " | " + dr["quant_extracted"] if prev else dr["quant_extracted"])
+                                        st.session_state["v9_quant"] = st.session_state["v13_corpus_quant"]
+                                    # Auto-assign sebagai naskah utama jika belum ada
+                                    if not st.session_state["v9_main_text"] and len(text_part) > 1000:
+                                        sections = detect_sections(text_part)
+                                        extracted = auto_extract_all(sections)
+                                        for k,fld in [("v9_topic","topic"),("v9_method","method"),("v9_novelty","novelty"),("v9_quant","quant_data"),("v9_keywords","keywords")]:
+                                            if not st.session_state.get(k):
+                                                st.session_state[k] = extracted[fld]["value"]
+                                        st.session_state["v9_main_text"] = text_part
+                                        st.session_state["v9_main_sections"] = sections
+                                        st.session_state["v9_main_filename"] = fn + " (from GDrive)"
+                                        st.session_state["v9_extracted_confidence"] = {k:v["confidence"] for k,v in extracted.items()}
+                                        st.success(f"✅ {fn} downloaded + auto-parsed + auto-assigned sebagai naskah utama")
+                                    else:
+                                        st.success(f"✅ {fn} downloaded + auto-parsed")
+                                except Exception as e:
+                                    st.success(f"✅ {fn} downloaded (parse skip: {str(e)[:50]})")
+                                st.rerun()
                             else: st.error(err)
             else:
                 st.warning(msg)
@@ -191,8 +258,90 @@ def render():
 
     st.divider()
 
-    # ── SECTION 4: PROMPTS ─────────────────────────────────────────────────
-    st.subheader("4. Generate Prompt per Tahap")
+    # ── SECTION 4: SESSION SAVER (v15) ─────────────────────────────────────
+    st.subheader("4. 💾 Simpan & Pulihkan Sesi (v15)")
+    st.info(
+        "Streamlit Cloud akan **kehilangan data** saat disconnect/refresh. "
+        "Simpan sesi ke file JSON untuk backup, atau pulihkan dari file JSON.",
+        icon="💾"
+    )
+    sm = get_session_summary()
+    ssc1, ssc2, ssc3 = st.columns([1,1,2])
+    ssc1.metric("Field terisi", f"{sm['filled']}/{sm['total']}")
+    ssc2.metric("Progress", f"{sm['percent']}%")
+    with ssc3:
+        ssc3a, ssc3b = st.columns(2)
+        with ssc3a:
+            if st.button("💾 Simpan Sesi", use_container_width=True):
+                json_str, fname = export_session_to_json()
+                st.session_state["v15_export_json"] = json_str
+                st.session_state["v15_export_fname"] = fname
+                st.success("✅ Sesi siap diunduh ↓")
+        if "v15_export_json" in st.session_state:
+            st.download_button(
+                "⬇ Unduh state.json",
+                data=st.session_state["v15_export_json"],
+                file_name=st.session_state["v15_export_fname"],
+                mime="application/json",
+                use_container_width=True
+            )
+    restore_file = st.file_uploader(
+        "🔄 Pulihkan sesi dari JSON",
+        type=["json"], key="v15_restore",
+        help="Upload state.json hasil 'Simpan Sesi' sebelumnya"
+    )
+    if restore_file and st.button("🔄 Pulihkan Sesi"):
+        success, msg = import_session_from_json(restore_file.read())
+        if success:
+            st.success(msg); st.rerun()
+        else:
+            st.error(msg)
+    st.caption(
+        "⚠️ File corpus (PDF/DOCX/data) tidak tersimpan di JSON — "
+        "Anda perlu re-upload setelah pulih. 5 field info penelitian + "
+        "jurnal target + CRediT authors tersimpan."
+    )
+
+    st.divider()
+
+    # ── SECTION 5: CRediT AUTHOR FORM (v15) ───────────────────────────────
+    st.subheader("5. 👥 CRediT Author Contribution (v15)")
+    st.info(
+        "Input penulis untuk Prompt E. Sistem akan generate CRediT Statement "
+        "dengan First Author + Co-Authors lengkap dengan peran masing-masing.",
+        icon="👥"
+    )
+    with st.expander("📋 Form Penulis (input untuk Prompt E)", expanded=False):
+        authors = render_credit_form()
+
+        if authors and any(a.get("name") for a in authors):
+            st.divider()
+            st.markdown("**📋 Preview CRediT Statement:**")
+            jname = ""
+            if matched: jname = matched.get("name", "")
+            credit_text = generate_credit_statement(authors, jname)
+            st.markdown(credit_text)
+
+            # Validation
+            is_valid, warnings = validate_credit(authors)
+            if warnings:
+                for w in warnings:
+                    st.warning(w, icon="⚠️")
+
+            # Save to session
+            st.session_state["v15_credit_statement"] = credit_text
+            st.download_button(
+                "⬇ Unduh CRediT Statement (.md)",
+                data=credit_text,
+                file_name=f"credit_statement_{datetime.now().strftime('%Y%m%d_%H%M')}.md",
+                mime="text/markdown",
+                use_container_width=True
+            )
+
+    st.divider()
+
+    # ── SECTION 6: PROMPTS ─────────────────────────────────────────────────
+    st.subheader("6. Generate Prompt per Tahap")
     has_main=bool(st.session_state["v9_main_text"])
     has_style=bool(st.session_state.get("v11_style_filename"))
 
@@ -231,7 +380,7 @@ def render():
                         st.download_button("📥 Template .md (M20)",data=md_c,file_name=md_fn,mime="text/markdown",type="primary",use_container_width=True)
 
     st.divider()
-    st.subheader("5. Progres IMRAD + Distribusi Konten")
+    st.subheader("7. Progres IMRAD + Distribusi Konten")
     prog_rows=[]
     for s in IMRAD_SECTIONS:
         extra=""
@@ -317,13 +466,22 @@ def _build_prompt(step, matched):
             "7. Jawab di canvas BARU.")
 
     if step["id"]=="B":
+        from core.data import CITATION_CONFIG
+        base_n = CITATION_CONFIG["min_total"]
+        target_n = CITATION_CONFIG["target_journal_count"]
+        total_n = CITATION_CONFIG["total_target"]
         return base+(
             f"INSTRUKSI B — CANVAS BARU:\n"
-            f"1. Paragraf 250 kata per bagian.\n"
-            f"2. {cit_count} sitasi CrossRef tersedia. Prioritas dari '{ref_fn}'.\n"
-            f"3. Tahun {vy}. APA 7th per kalimat klaim. DOI valid.\n"
-            f"4. [M11] Wajib sitasi setiap section (kecuali Conclusion).\n"
-            f"5. Jawab di canvas BARU.")
+            f"1. Paragraf 250 kata per bagian IMRAD.\n"
+            f"2. PIPELINE SITASI v15:\n"
+            f"   • BASE: {base_n} sitasi umum dari database Scopus/SINTA\n"
+            f"   • +20% dari jurnal target ({jn}): {target_n} sitasi\n"
+            f"   • TOTAL: {total_n} sitasi unik\n"
+            f"3. Prioritas dari file referensi '{ref_fn}' (jika diunggah).\n"
+            f"4. CrossRef sudah fetch {cit_count} sitasi. Tag [TARGET-JOURNAL] vs [CORE-DB].\n"
+            f"5. Tahun {vy}. APA 7th per kalimat. DOI valid + URL aksesibel.\n"
+            f"6. [M11] Wajib sitasi setiap section (kecuali Conclusion).\n"
+            f"7. Jawab di canvas BARU.")
 
     if step["id"]=="C":
         style_note=(f"Analisis '{style_fn}': panjang kalimat, rasio aktif/pasif, heading, kepadatan sitasi." if style_fn!="[tidak ada]" else "Standar IMRaD jurnal target.")
@@ -395,7 +553,26 @@ def _build_prompt(step, matched):
             f"Tampilkan [CORE QUALITY SCORE v14] di akhir Stage 7.")
 
     if step["id"]=="E":
-        return base+"INSTRUKSI E — CANVAS BARU:\n1. Graphical abstract.\n2. Cover letter spesifik jurnal.\n3. Checklist + CRediT.\n4. Canvas BARU."
+        # Build CRediT statement if authors filled
+        authors = st.session_state.get("v15_authors", [])
+        credit_text = ""
+        if authors and any(a.get("name") for a in authors):
+            credit_text = generate_credit_statement(authors, jn)
+        credit_block = f"\n[CRediT STATEMENT — sudah di-generate dari form]\n{credit_text}\n" if credit_text else "\n[CRediT STATEMENT — kosong, isi form di Section CRediT]\n"
+        return base+(
+            f"INSTRUKSI E — PERSIAPAN SUBMIT JURNAL ({jn}) — CANVAS BARU:\n\n"
+            f"1. GRAPHICAL ABSTRACT — deskripsi visual alur penelitian.\n"
+            f"2. SCIENTIFIC FIGURES — daftar figur + caption.\n"
+            f"3. COVER LETTER spesifik untuk {jn}:\n"
+            f"   • Novelty: {s.get('v9_novelty','')[:100]}\n"
+            f"   • Pernyataan originality\n"
+            f"   • Justifikasi kesesuaian dengan scope jurnal\n"
+            f"4. SUBMISSION CHECKLIST sesuai author guidelines jurnal target.\n"
+            f"5. CRediT AUTHOR CONTRIBUTION STATEMENT:\n{credit_block}\n"
+            f"6. DECLARATION OF COMPETING INTERESTS.\n"
+            f"7. DATA AVAILABILITY STATEMENT.\n"
+            f"8. ACKNOWLEDGMENTS (opsional).\n"
+            f"9. Jawab di canvas BARU.")
 
     if step["id"]=="F":
         return base+(f"INSTRUKSI F — CANVAS BARU:\nBerdasarkan style guide '{style_fn}':\n1. Sesuaikan format heading jurnal {jn}.\n2. Sesuaikan konvensi tabel/gambar.\n3. Cover letter dengan gaya jurnal target.\n4. Canvas BARU.")

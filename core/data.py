@@ -22,16 +22,21 @@ def get_valid_years():
     return list(range(cy - 2, cy + 1))
 
 CITATION_CONFIG = {
-    "min_total": 50, "max_year_old": 3, "style": "APA 7th edition",
-    "target_journal_ratio_min": 0.10, "target_journal_ratio_max": 0.20,
+    "min_total": 50,                # v15: base 50 sitasi umum
+    "target_journal_count": 10,     # v15: +20% × 50 = 10 dari jurnal target
+    "total_target": 60,             # v15: 50 + 10 = 60 sitasi total
+    "max_year_old": 3, "style": "APA 7th edition",
+    "target_journal_ratio": 0.20,   # v15: fixed 20% (bukan range)
     "deduplication": True, "doi_validation": "required",
     "blacklist_publishers": ["Frontiers", "Hindawi"],
     "mdpi_exception": "Sustainability (SDGs only)",
     "fallback_questions": 6, "conclusion_exempted": True,
-    "words_per_section": 1950,   # v14: naik dari 1750
-    "results_table_ratio": 0.40, # v14: 40% tabel
-    "results_figure_ratio": 0.60, # v14: 60% gambar
+    "words_per_section": 1950,
+    "results_table_ratio": 0.40,
+    "results_figure_ratio": 0.60,
 }
+
+
 
 SECTION_FALLBACK_TEMPLATES = {
     "Introduction": [
@@ -300,6 +305,12 @@ CORE_MODULES = [
     {"id":"M25","name":"Data File Reader","icon":"📊","color":"#633806","desc":"CSV/Excel/PDF in-memory. Extract angka → quant field."},
     {"id":"M26","name":"Staged Prompt Engine","icon":"🔄","color":"#072F5F","desc":"Canvas baru TIAP stage. Y/N confirm. 10 judul Q1. Daftar Pustaka APA+DOI."},
     {"id":"M27","name":"Manuscript Reviewer","icon":"🧑‍⚖️","color":"#6B0000","desc":"Upload IMRAD → Q1 reviewer: score, major/minor, recommendations."},
+    {"id":"M28","name":"Session Persistence","icon":"💾","color":"#185FA5",
+     "desc":"NEW v15. Export/import JSON untuk backup sesi saat disconnect Streamlit Cloud. 5 info penelitian + jurnal target tersimpan."},
+    {"id":"M29","name":"CRediT Form Builder","icon":"👥","color":"#27500A",
+     "desc":"NEW v15. Input n_authors + 14 CRediT roles per author. Auto-generate CRediT Statement dengan First Author + Co-Authors untuk Prompt E."},
+    {"id":"M30","name":"GDrive Auto-Reader","icon":"🌐","color":"#A32D2D",
+     "desc":"NEW v15. Setelah fetch GDrive → otomatis parse + extract quant + auto-assign sebagai naskah utama jika belum ada."},
 ]
 
 INTEGRITY_RULES = [
