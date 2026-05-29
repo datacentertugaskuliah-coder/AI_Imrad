@@ -295,7 +295,7 @@ CORE_MODULES = [
     {"id":"M15","name":"Markdown Export Engine","icon":"📥","color":"#1D9E75","desc":"Auto-generate .md setelah Prompt D."},
     {"id":"M16","name":"REAL Document Parser","icon":"⚙️","color":"#0C447C","desc":"pypdf + python-docx. Parse PDF/DOCX nyata."},
     {"id":"M17","name":"REAL Auto-Extractor","icon":"🤖","color":"#534AB7","desc":"Regex + TF-IDF. Zero-click auto-fill."},
-    {"id":"M18","name":"Google Drive Resolver","icon":"🌐","color":"#3B6D11","desc":"File + Folder URL. Dual fallback."},
+    {"id":"M18","name":"Google Drive Resolver","icon":"🌐","color":"#3B6D11","desc":"v16: File + Folder URL in-memory. HTML scrape folder. Confirm-token. No disk write."},
     {"id":"M19","name":"One-by-One File Manager","icon":"📋","color":"#BA7517","desc":"Session corpus. Add/remove per file."},
     {"id":"M20","name":"REAL MD Exporter","icon":"📤","color":"#1D9E75","desc":"Generate .md actual + auto-download."},
     {"id":"M21","name":"CrossRef Citation API","icon":"🔗","color":"#A32D2D","desc":"DOI valid nyata. APA 7th otomatis."},
@@ -309,8 +309,8 @@ CORE_MODULES = [
      "desc":"NEW v15. Export/import JSON untuk backup sesi saat disconnect Streamlit Cloud. 5 info penelitian + jurnal target tersimpan."},
     {"id":"M29","name":"CRediT Form Builder","icon":"👥","color":"#27500A",
      "desc":"NEW v15. Input n_authors + 14 CRediT roles per author. Auto-generate CRediT Statement dengan First Author + Co-Authors untuk Prompt E."},
-    {"id":"M30","name":"GDrive Auto-Reader","icon":"🌐","color":"#A32D2D",
-     "desc":"NEW v15. Setelah fetch GDrive → otomatis parse + extract quant + auto-assign sebagai naskah utama jika belum ada."},
+    {"id":"M30","name":"GDrive In-Memory Reader","icon":"🌐","color":"#A32D2D",
+     "desc":"v16 UPGRADE. Baca file/folder GDrive langsung ke memori (BytesIO murni, TANPA download ke disk). Folder via HTML scrape. Confirm-token untuk file besar. Diagnosa error PRIVATE/NOT-FOUND/RATE-LIMIT."},
 ]
 
 INTEGRITY_RULES = [

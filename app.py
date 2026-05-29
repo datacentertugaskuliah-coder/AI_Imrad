@@ -1,10 +1,10 @@
 import streamlit as st, hashlib, hmac
 
-st.set_page_config(page_title="Research Workflow · Core IMRAD v15",page_icon="🔬",layout="wide",initial_sidebar_state="expanded")
+st.set_page_config(page_title="Research Workflow · Core IMRAD v16",page_icon="🔬",layout="wide",initial_sidebar_state="expanded")
 
 def _check():
     if st.session_state.get("authenticated"): return True
-    st.markdown("## 🔬 Research Workflow Dashboard v15")
+    st.markdown("## 🔬 Research Workflow Dashboard v16")
     st.markdown("*30 Modul · Humanlike · Staged · Q1 Reviewer · Canvas Baru*")
     st.divider()
     pwd=st.text_input("Access key",type="password",key="li")
@@ -35,12 +35,12 @@ PAGES = {
 }
 
 with st.sidebar:
-    st.markdown("### Research Workflow v15")
+    st.markdown("### Research Workflow v16")
     st.markdown("*30 Modul · +99% kecerdasan*")
     st.divider()
     choice=st.radio("Navigasi",list(PAGES.keys()),label_visibility="collapsed")
     st.divider()
-    st.caption("v15: Canvas baru · 40/60 ratio · Daftar Pustaka APA+DOI · Humanlike")
+    st.caption("v16: Canvas baru · 40/60 ratio · Daftar Pustaka APA+DOI · Humanlike")
     if st.button("Logout",use_container_width=True):
         st.session_state.authenticated=False; st.rerun()
 

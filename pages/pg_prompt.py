@@ -1,4 +1,4 @@
-"""pg_prompt.py v15 — Development Info (Core Prompt HIDDEN)"""
+"""pg_prompt.py v16 — Development Info (Core Prompt HIDDEN)"""
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
@@ -7,7 +7,7 @@ from core.data import CORE_MODULES, WORKFLOW_STEPS, get_valid_years, JOURNAL_DB,
 
 def render():
     st.title("ℹ️ Tentang Research Workflow Dashboard")
-    st.caption("Core IMRAD Intelligence v15 · 27 Modul · +99% dari v13")
+    st.caption("Core IMRAD Intelligence v16 · 27 Modul · +99% dari v13")
 
     st.info(
         "**Research Workflow Dashboard** adalah sistem kecerdasan akademik untuk penyusunan "
@@ -19,19 +19,19 @@ def render():
 
     # KPI
     k1,k2,k3,k4,k5,k6=st.columns(6)
-    k1.metric("Versi","v15","Latest")
-    k2.metric("Modul Core",str(len(CORE_MODULES)),"+5 v15")
+    k1.metric("Versi","v16","Latest")
+    k2.metric("Modul Core",str(len(CORE_MODULES)),"+5 v16")
     k3.metric("Tahap Workflow","6","A → F")
     k4.metric("Jurnal DB",str(len(JOURNAL_DB)),"Terverifikasi")
     k5.metric("Sitasi Min","50","Unik APA 7th")
     k6.metric("Tahun Sitasi",f"{get_valid_years()[0]}-{get_valid_years()[-1]}","Dinamis")
 
     st.divider()
-    st.subheader("🚀 Fitur yang Dikembangkan v15")
+    st.subheader("🚀 Fitur yang Dikembangkan v16")
 
     features = [
-        ("📊 Content Ratio v15","Results section: 40% tabel + 60% gambar dihitung dari file yang diunggah. Tidak ditentukan manual — sistem hitung otomatis dari naskah."),
-        ("🔗 Discussion Linker v15","Discussion wajib referensi ke judul Table/Figure yang dibuat di Results. Sistem ekstrak judul tabel/gambar dari naskah dan inject ke instruksi Discussion."),
+        ("📊 Content Ratio v16","Results section: 40% tabel + 60% gambar dihitung dari file yang diunggah. Tidak ditentukan manual — sistem hitung otomatis dari naskah."),
+        ("🔗 Discussion Linker v16","Discussion wajib referensi ke judul Table/Figure yang dibuat di Results. Sistem ekstrak judul tabel/gambar dari naskah dan inject ke instruksi Discussion."),
         ("📝 1950 Kata per Section","Target kata per section naik dari 1750 → 1950. Setiap paragraf wajib ada angka kuantitatif."),
         ("🔄 Canvas Baru per Stage","Prompt D dibagi 7 stage. Setiap stage ditulis di canvas BARU terpisah. JANGAN timpa canvas lama. Konfirmasi Y untuk lanjut."),
         ("📑 APA per Kalimat","Setiap kalimat klaim di IMRAD wajib disertai (Author, Year). Style APA 7th konsisten di semua section."),
@@ -42,10 +42,11 @@ def render():
         ("🧑‍⚖️ Q1 Reviewer (M27)","Upload manuskrip IMRAD → penilaian reviewer Q1 per section: score 0-10, major/minor revisions, editor comment, rekomendasi perbaikan."),
         ("🌐 GDrive Folder Support","URL folder drive.google.com/drive/folders/ID kini didukung. Download semua file di folder sekaligus."),
         ("📊 M25 Data File Reader","Baca CSV/Excel/TXT/PDF in-memory (tanpa download). Extract angka otomatis → auto-fill Data Kuantitatif."),
-        ("📑 Citation 60 Total v15","50 sitasi base + 20% × 50 = 10 dari jurnal target = 60 sitasi total. Tag [TARGET-JOURNAL] vs [CORE-DB] eksplisit."),
-        ("👥 CRediT Form v15 (M29)","Input n_authors + nama + 14 CRediT roles per penulis. First Author + Co-Authors otomatis di-label. Generate CRediT Statement untuk Prompt E."),
-        ("💾 Session Persistence v15 (M28)","Streamlit Cloud akan kehilangan data saat disconnect. Tombol Simpan Sesi → unduh state.json. Pulihkan Sesi → restore 5 info + jurnal + authors."),
-        ("🌐 GDrive Auto-Read v15 (M30)","Setelah download dari GDrive: otomatis parse PDF/DOCX, extract data kuantitatif, dan auto-assign sebagai naskah utama jika belum ada."),
+        ("📑 Citation 60 Total v16","50 sitasi base + 20% × 50 = 10 dari jurnal target = 60 sitasi total. Tag [TARGET-JOURNAL] vs [CORE-DB] eksplisit."),
+        ("👥 CRediT Form v16 (M29)","Input n_authors + nama + 14 CRediT roles per penulis. First Author + Co-Authors otomatis di-label. Generate CRediT Statement untuk Prompt E."),
+        ("💾 Session Persistence v16 (M28)","Streamlit Cloud akan kehilangan data saat disconnect. Tombol Simpan Sesi → unduh state.json. Pulihkan Sesi → restore 5 info + jurnal + authors."),
+        ("🌐 GDrive Auto-Read v16 (M30)","Setelah download dari GDrive: otomatis parse PDF/DOCX, extract data kuantitatif, dan auto-assign sebagai naskah utama jika belum ada."),
+        ("📖 GDrive In-Memory v16 (M18/M30)","File & folder GDrive dibaca LANGSUNG ke memori (BytesIO), TANPA download ke disk. Folder via HTML scrape file IDs. Confirm-token untuk file > 25MB. Diagnosa error: PRIVATE vs NOT-FOUND vs RATE-LIMIT."),
     ]
 
     cols=st.columns(2)
@@ -66,7 +67,7 @@ def render():
         {"Versi":"v11","Deskripsi":"ref_file + style_file dikembalikan, placement rules, GDrive fix"},
         {"Versi":"v12","Deskripsi":"GDrive FOLDER support, merge Section 3 → Section 1"},
         {"Versi":"v13","Deskripsi":"M23-M27: Sub-heading, Humanlike, DataReader, Staged, Reviewer"},
-        {"Versi":"v15","Deskripsi":"40/60 tabel/gambar, Discussion←Results, 1950 kata, canvas baru per stage, 10 judul, Daftar Pustaka APA+DOI"},
+        {"Versi":"v16","Deskripsi":"40/60 tabel/gambar, Discussion←Results, 1950 kata, canvas baru per stage, 10 judul, Daftar Pustaka APA+DOI"},
     ])
     st.dataframe(hist,use_container_width=True,hide_index=True)
 

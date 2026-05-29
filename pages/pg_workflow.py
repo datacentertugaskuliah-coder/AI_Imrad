@@ -100,8 +100,8 @@ def render():
             c4r.metric("Target gambar Results (60%)",ratio.get("target_figures",3))
 
     # File data
-    st.markdown("**📊 File data penelitian** *(M25 baca in-memory, no download)*")
-    dt1,dt2=st.tabs(["📤 Upload","🌐 Google Drive (File & Folder)"])
+    st.markdown("**📊 File data penelitian** *(M25 + M30 baca in-memory murni — TIDAK download ke disk)*")
+    dt1,dt2=st.tabs(["📤 Upload","🌐 Google Drive (baca in-memory, no download)"])
     with dt1:
         nf=st.file_uploader("Pilih file data",type=["xlsx","csv","txt","pdf","png","jpg","docx"],key="v14_data")
         if nf and st.button(f"➕ Tambahkan {nf.name}"):
@@ -119,10 +119,10 @@ def render():
             ok,msg=validate_gdrive_url(gurl); url_type,_=detect_gdrive_type(gurl)
             if ok:
                 st.success(f"{'📁' if url_type=='folder' else '📄'} {msg}")
-                st.caption("✨ v15 AUTO-READ: file akan otomatis di-parse + di-extract setelah download")
-                if st.button("📥 Download + Auto-Read dari GDrive",type="primary"):
+                st.caption("✨ v16 IN-MEMORY: file dibaca langsung ke memori (TANPA download ke disk), lalu auto-parse + extract")
+                if st.button("📖 Baca file dari GDrive (in-memory)",type="primary"):
                     if url_type=="folder":
-                        with st.spinner("Downloading folder + auto-reading semua file..."):
+                        with st.spinner("Membaca semua file folder in-memory (tanpa download)..."):
                             fl,err=fetch_folder_files(gurl)
                             if fl:
                                 files_processed = 0
@@ -155,12 +155,12 @@ def render():
                                         files_processed += 1
                                     except Exception as e:
                                         pass
-                                st.success(f"✅ {len(fl)} file downloaded · {files_processed} auto-parsed")
+                                st.success(f"✅ {len(fl)} file dibaca in-memory · {files_processed} auto-parsed")
                                 if naskah_assigned: st.info("📄 Naskah utama auto-assigned dari file pertama yang valid")
                                 st.rerun()
                             else: st.error(err)
                     else:
-                        with st.spinner("Downloading + auto-reading file..."):
+                        with st.spinner("Membaca file in-memory (tanpa download)..."):
                             c,fn,err=fetch_from_gdrive(gurl)
                             if c:
                                 add_file(fn,c,source="gdrive",source_url=gurl)
@@ -184,11 +184,11 @@ def render():
                                         st.session_state["v9_main_sections"] = sections
                                         st.session_state["v9_main_filename"] = fn + " (from GDrive)"
                                         st.session_state["v9_extracted_confidence"] = {k:v["confidence"] for k,v in extracted.items()}
-                                        st.success(f"✅ {fn} downloaded + auto-parsed + auto-assigned sebagai naskah utama")
+                                        st.success(f"✅ {fn} dibaca in-memory + auto-parsed + auto-assigned sebagai naskah utama")
                                     else:
-                                        st.success(f"✅ {fn} downloaded + auto-parsed")
+                                        st.success(f"✅ {fn} dibaca in-memory + auto-parsed")
                                 except Exception as e:
-                                    st.success(f"✅ {fn} downloaded (parse skip: {str(e)[:50]})")
+                                    st.success(f"✅ {fn} dibaca in-memory (parse skip: {str(e)[:50]})")
                                 st.rerun()
                             else: st.error(err)
             else:
