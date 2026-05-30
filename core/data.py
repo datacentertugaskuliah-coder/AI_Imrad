@@ -184,26 +184,49 @@ IMRAD_STRUCTURE = {
 }
 
 JOURNAL_DB = [
-    {"name":"Computers and Electronics in Agriculture","publisher":"Elsevier","rank":"Q1","if":8.3,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek"],"issn":"0168-1699","url":"https://www.sciencedirect.com/journal/computers-and-electronics-in-agriculture","scope":"Teknologi pertanian","doi_prefix":"10.1016/j.compag","note":"SJR Q1"},
-    {"name":"Bioresource Technology","publisher":"Elsevier","rank":"Q1","if":11.4,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek"],"issn":"0960-8524","url":"https://www.sciencedirect.com/journal/bioresource-technology","scope":"Bioenergi","doi_prefix":"10.1016/j.biortech","note":"SJR Q1"},
-    {"name":"Journal of Cleaner Production","publisher":"Elsevier","rank":"Q1","if":11.1,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek","Umum"],"issn":"0959-6526","url":"https://www.sciencedirect.com/journal/journal-of-cleaner-production","scope":"Keberlanjutan","doi_prefix":"10.1016/j.jclepro","note":"SJR Q1"},
-    {"name":"Renewable and Sustainable Energy Reviews","publisher":"Elsevier","rank":"Q1","if":16.8,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek"],"issn":"1364-0321","url":"https://www.sciencedirect.com/journal/renewable-and-sustainable-energy-reviews","scope":"Energi terbarukan","doi_prefix":"10.1016/j.rser","note":"SJR Q1"},
-    {"name":"Expert Systems with Applications","publisher":"Elsevier","rank":"Q1","if":8.5,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"0957-4174","url":"https://www.sciencedirect.com/journal/expert-systems-with-applications","scope":"Sistem pakar AI","doi_prefix":"10.1016/j.eswa","note":"SJR Q1"},
-    {"name":"Pattern Recognition","publisher":"Elsevier","rank":"Q1","if":8.0,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"0031-3203","url":"https://www.sciencedirect.com/journal/pattern-recognition","scope":"Computer vision","doi_prefix":"10.1016/j.patcog","note":"SJR Q1"},
-    {"name":"Information Fusion","publisher":"Elsevier","rank":"Q1","if":18.6,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"1566-2535","url":"https://www.sciencedirect.com/journal/information-fusion","scope":"Fusi data","doi_prefix":"10.1016/j.inffus","note":"SJR Q1"},
-    {"name":"IEEE Transactions on Neural Networks","publisher":"IEEE","rank":"Q1","if":14.3,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"2162-237X","url":"https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385","scope":"Neural network","doi_prefix":"10.1109/TNNLS","note":"SJR Q1"},
-    {"name":"Knowledge-Based Systems","publisher":"Elsevier","rank":"Q1","if":8.8,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"0950-7051","url":"https://www.sciencedirect.com/journal/knowledge-based-systems","scope":"Knowledge engineering","doi_prefix":"10.1016/j.knosys","note":"SJR Q1"},
-    {"name":"Applied Soft Computing","publisher":"Elsevier","rank":"Q1","if":8.7,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"1568-4946","url":"https://www.sciencedirect.com/journal/applied-soft-computing","scope":"Soft computing","doi_prefix":"10.1016/j.asoc","note":"SJR Q1"},
-    {"name":"IEEE Access","publisher":"IEEE","rank":"Q1","if":3.9,"apc":True,"apc_usd":1950,"apc_label":"APC $1,950","fields":["Komputer / AI","Saintek"],"issn":"2169-3536","url":"https://ieeeaccess.ieee.org","scope":"Multidisiplin","doi_prefix":"10.1109/ACCESS","note":"Diamond OA"},
-    {"name":"Computers in Human Behavior","publisher":"Elsevier","rank":"Q1","if":9.9,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Sosial & Humaniora"],"issn":"0747-5632","url":"https://www.sciencedirect.com/journal/computers-in-human-behavior","scope":"Teknologi perilaku","doi_prefix":"10.1016/j.chb","note":"SJR Q1"},
-    {"name":"International Journal of Information Management","publisher":"Elsevier","rank":"Q1","if":21.0,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Sosial & Humaniora"],"issn":"0268-4012","url":"https://www.sciencedirect.com/journal/international-journal-of-information-management","scope":"Manajemen informasi","doi_prefix":"10.1016/j.ijinfomgt","note":"SJR Q1"},
-    {"name":"Heliyon","publisher":"Cell Press / Elsevier","rank":"Q1","if":4.0,"apc":True,"apc_usd":2100,"apc_label":"APC $2,100","fields":["Sosial & Humaniora","Saintek","Umum"],"issn":"2405-8440","url":"https://www.cell.com/heliyon","scope":"Multidisiplin","doi_prefix":"10.1016/j.heliyon","note":"Diamond OA"},
-    {"name":"PLOS ONE","publisher":"PLOS","rank":"Q1","if":3.7,"apc":True,"apc_usd":1931,"apc_label":"APC $1,931","fields":["Sosial & Humaniora","Saintek","Umum"],"issn":"1932-6203","url":"https://journals.plos.org/plosone","scope":"Multidisiplin","doi_prefix":"10.1371/journal.pone","note":"OA"},
-    {"name":"Nature Communications","publisher":"Nature Portfolio","rank":"Q1","if":16.6,"apc":True,"apc_usd":6290,"apc_label":"APC $6,290","fields":["Umum"],"issn":"2041-1723","url":"https://www.nature.com/ncomms","scope":"Sains","doi_prefix":"10.1038/s41467","note":"Diamond OA"},
-    {"name":"Science of the Total Environment","publisher":"Elsevier","rank":"Q1","if":9.8,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Umum","Saintek"],"issn":"0048-9697","url":"https://www.sciencedirect.com/journal/science-of-the-total-environment","scope":"Lingkungan","doi_prefix":"10.1016/j.scitotenv","note":"SJR Q1"},
-    {"name":"Indonesian Journal of Electrical Engineering and Computer Science","publisher":"IAES","rank":"Q3","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek","Komputer / AI"],"issn":"2502-4752","url":"https://ijeecs.iaescore.com","scope":"Teknik elektro","doi_prefix":"10.11591/ijeecs","note":"Scopus Q3"},
-    {"name":"JNTETI","publisher":"UGM","rank":"SINTA1","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek","Komputer / AI"],"issn":"2301-4156","url":"https://jnteti.te.ugm.ac.id","scope":"Teknik elektro TI","doi_prefix":"10.22146/jnteti","note":"SINTA 1"},
-    {"name":"Jurnal RESTI","publisher":"IAII","rank":"SINTA2","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI","Saintek"],"issn":"2580-0760","url":"https://jurnal.iaii.or.id/index.php/RESTI","scope":"Sistem informasi","doi_prefix":"10.29207/resti","note":"SINTA 2"},
+    {"name":"Computers and Electronics in Agriculture","publisher":"Elsevier","rank":"Q1","if":8.3,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek"],"issn":"0168-1699","frequency":"Monthly","issues_per_year":12,"url":"https://www.sciencedirect.com/journal/computers-and-electronics-in-agriculture","scope":"Teknologi pertanian","doi_prefix":"10.1016/j.compag","note":"SJR Q1"},
+    {"name":"Bioresource Technology","publisher":"Elsevier","rank":"Q1","if":11.4,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek"],"issn":"0960-8524","frequency":"Semimonthly","issues_per_year":24,"url":"https://www.sciencedirect.com/journal/bioresource-technology","scope":"Bioenergi","doi_prefix":"10.1016/j.biortech","note":"SJR Q1"},
+    {"name":"Journal of Cleaner Production","publisher":"Elsevier","rank":"Q1","if":11.1,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek","Umum"],"issn":"0959-6526","frequency":"Biweekly","issues_per_year":26,"url":"https://www.sciencedirect.com/journal/journal-of-cleaner-production","scope":"Keberlanjutan","doi_prefix":"10.1016/j.jclepro","note":"SJR Q1"},
+    {"name":"Renewable and Sustainable Energy Reviews","publisher":"Elsevier","rank":"Q1","if":16.8,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek"],"issn":"1364-0321","frequency":"Monthly","issues_per_year":12,"url":"https://www.sciencedirect.com/journal/renewable-and-sustainable-energy-reviews","scope":"Energi terbarukan","doi_prefix":"10.1016/j.rser","note":"SJR Q1"},
+    {"name":"Expert Systems with Applications","publisher":"Elsevier","rank":"Q1","if":8.5,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"0957-4174","frequency":"Semimonthly","issues_per_year":24,"url":"https://www.sciencedirect.com/journal/expert-systems-with-applications","scope":"Sistem pakar AI","doi_prefix":"10.1016/j.eswa","note":"SJR Q1"},
+    {"name":"Pattern Recognition","publisher":"Elsevier","rank":"Q1","if":8.0,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"0031-3203","frequency":"Monthly","issues_per_year":12,"url":"https://www.sciencedirect.com/journal/pattern-recognition","scope":"Computer vision","doi_prefix":"10.1016/j.patcog","note":"SJR Q1"},
+    {"name":"Information Fusion","publisher":"Elsevier","rank":"Q1","if":18.6,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"1566-2535","frequency":"Monthly","issues_per_year":12,"url":"https://www.sciencedirect.com/journal/information-fusion","scope":"Fusi data","doi_prefix":"10.1016/j.inffus","note":"SJR Q1"},
+    {"name":"IEEE Transactions on Neural Networks","publisher":"IEEE","rank":"Q1","if":14.3,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"2162-237X","frequency":"Monthly","issues_per_year":12,"url":"https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385","scope":"Neural network","doi_prefix":"10.1109/TNNLS","note":"SJR Q1"},
+    {"name":"Knowledge-Based Systems","publisher":"Elsevier","rank":"Q1","if":8.8,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"0950-7051","frequency":"Biweekly","issues_per_year":26,"url":"https://www.sciencedirect.com/journal/knowledge-based-systems","scope":"Knowledge engineering","doi_prefix":"10.1016/j.knosys","note":"SJR Q1"},
+    {"name":"Applied Soft Computing","publisher":"Elsevier","rank":"Q1","if":8.7,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"1568-4946","frequency":"Monthly","issues_per_year":12,"url":"https://www.sciencedirect.com/journal/applied-soft-computing","scope":"Soft computing","doi_prefix":"10.1016/j.asoc","note":"SJR Q1"},
+    {"name":"IEEE Access","publisher":"IEEE","rank":"Q1","if":3.9,"apc":True,"apc_usd":1950,"apc_label":"APC $1,950","fields":["Komputer / AI","Saintek"],"issn":"2169-3536","frequency":"Continuous","issues_per_year":12,"url":"https://ieeeaccess.ieee.org","scope":"Multidisiplin","doi_prefix":"10.1109/ACCESS","note":"Diamond OA"},
+    {"name":"Computers in Human Behavior","publisher":"Elsevier","rank":"Q1","if":9.9,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Sosial & Humaniora"],"issn":"0747-5632","frequency":"Monthly","issues_per_year":12,"url":"https://www.sciencedirect.com/journal/computers-in-human-behavior","scope":"Teknologi perilaku","doi_prefix":"10.1016/j.chb","note":"SJR Q1"},
+    {"name":"International Journal of Information Management","publisher":"Elsevier","rank":"Q1","if":21.0,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Sosial & Humaniora"],"issn":"0268-4012","frequency":"Bimonthly","issues_per_year":6,"url":"https://www.sciencedirect.com/journal/international-journal-of-information-management","scope":"Manajemen informasi","doi_prefix":"10.1016/j.ijinfomgt","note":"SJR Q1"},
+    {"name":"Heliyon","publisher":"Cell Press / Elsevier","rank":"Q1","if":4.0,"apc":True,"apc_usd":2100,"apc_label":"APC $2,100","fields":["Sosial & Humaniora","Saintek","Umum"],"issn":"2405-8440","frequency":"Monthly","issues_per_year":12,"url":"https://www.cell.com/heliyon","scope":"Multidisiplin","doi_prefix":"10.1016/j.heliyon","note":"Diamond OA"},
+    {"name":"PLOS ONE","publisher":"PLOS","rank":"Q1","if":3.7,"apc":True,"apc_usd":1931,"apc_label":"APC $1,931","fields":["Sosial & Humaniora","Saintek","Umum"],"issn":"1932-6203","frequency":"Continuous","issues_per_year":12,"url":"https://journals.plos.org/plosone","scope":"Multidisiplin","doi_prefix":"10.1371/journal.pone","note":"OA"},
+    {"name":"Nature Communications","publisher":"Nature Portfolio","rank":"Q1","if":16.6,"apc":True,"apc_usd":6290,"apc_label":"APC $6,290","fields":["Umum"],"issn":"2041-1723","frequency":"Continuous","issues_per_year":12,"url":"https://www.nature.com/ncomms","scope":"Sains","doi_prefix":"10.1038/s41467","note":"Diamond OA"},
+    {"name":"Science of the Total Environment","publisher":"Elsevier","rank":"Q1","if":9.8,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Umum","Saintek"],"issn":"0048-9697","frequency":"Semimonthly","issues_per_year":24,"url":"https://www.sciencedirect.com/journal/science-of-the-total-environment","scope":"Lingkungan","doi_prefix":"10.1016/j.scitotenv","note":"SJR Q1"},
+    {"name":"Indonesian Journal of Electrical Engineering and Computer Science","publisher":"IAES","rank":"Q3","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek","Komputer / AI"],"issn":"2502-4752","frequency":"Quarterly","issues_per_year":4,"url":"https://ijeecs.iaescore.com","scope":"Teknik elektro","doi_prefix":"10.11591/ijeecs","note":"Scopus Q3"},
+    {"name":"JNTETI","publisher":"UGM","rank":"SINTA1","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek","Komputer / AI"],"issn":"2301-4156","frequency":"Quarterly","issues_per_year":4,"url":"https://jnteti.te.ugm.ac.id","scope":"Teknik elektro TI","doi_prefix":"10.22146/jnteti","note":"SINTA 1"},
+    {"name":"Jurnal RESTI","publisher":"IAII","rank":"SINTA2","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI","Saintek"],"issn":"2580-0760","frequency":"Bimonthly","issues_per_year":6,"url":"https://jurnal.iaii.or.id/index.php/RESTI","scope":"Sistem informasi","doi_prefix":"10.29207/resti","note":"SINTA 2"},
+    {"name":"Applied Sciences","publisher":"MDPI","rank":"Q2","if":2.7,"apc":True,"apc_usd":2600,"apc_label":"APC $2,600","fields":["Saintek","Umum"],"issn":"2076-3417","frequency":"Semimonthly","issues_per_year":24,"url":"https://www.mdpi.com/journal/applsci","scope":"Sains terapan","doi_prefix":"10.3390/app","note":"SJR Q2 — MDPI Sustainability only exception; ditampilkan untuk peta"},
+    {"name":"Sustainability","publisher":"MDPI","rank":"Q2","if":3.9,"apc":True,"apc_usd":2400,"apc_label":"APC $2,400","fields":["Umum","Sosial & Humaniora"],"issn":"2071-1050","frequency":"Semimonthly","issues_per_year":24,"url":"https://www.mdpi.com/journal/sustainability","scope":"SDGs keberlanjutan","doi_prefix":"10.3390/su","note":"SJR Q2 — MDPI SDGs exception (diizinkan)"},
+    {"name":"Cogent Engineering","publisher":"Taylor & Francis","rank":"Q2","if":2.9,"apc":True,"apc_usd":1480,"apc_label":"APC $1,480","fields":["Saintek"],"issn":"2331-1916","frequency":"Annual","issues_per_year":1,"url":"https://www.tandfonline.com/journals/oaen20","scope":"Teknik umum","doi_prefix":"10.1080/23311916","note":"SJR Q2"},
+    {"name":"PeerJ Computer Science","publisher":"PeerJ","rank":"Q2","if":3.8,"apc":True,"apc_usd":1395,"apc_label":"APC $1,395","fields":["Komputer / AI"],"issn":"2376-5992","frequency":"Continuous","issues_per_year":12,"url":"https://peerj.com/computer-science","scope":"Ilmu komputer","doi_prefix":"10.7717/peerj-cs","note":"SJR Q2"},
+    {"name":"International Journal of Advanced Computer Science and Applications","publisher":"SAI","rank":"Q3","if":1.1,"apc":True,"apc_usd":300,"apc_label":"APC $300","fields":["Komputer / AI"],"issn":"2158-107X","frequency":"Monthly","issues_per_year":12,"url":"https://thesai.org/Publications/IJACSA","scope":"Computer science","doi_prefix":"10.14569/IJACSA","note":"SJR Q3"},
+    {"name":"TELKOMNIKA Telecommunication Computing Electronics Control","publisher":"UAD","rank":"Q3","if":None,"apc":True,"apc_usd":300,"apc_label":"APC $300","fields":["Saintek","Komputer / AI"],"issn":"1693-6930","frequency":"Bimonthly","issues_per_year":6,"url":"https://telkomnika.uad.ac.id","scope":"Telekomunikasi kontrol","doi_prefix":"10.12928/telkomnika","note":"Scopus Q3"},
+    {"name":"International Journal of Electrical and Computer Engineering","publisher":"IAES","rank":"Q2","if":None,"apc":True,"apc_usd":295,"apc_label":"APC $295","fields":["Saintek","Komputer / AI"],"issn":"2088-8708","frequency":"Bimonthly","issues_per_year":6,"url":"https://ijece.iaescore.com","scope":"Teknik elektro komputer","doi_prefix":"10.11591/ijece","note":"Scopus Q2"},
+    {"name":"Bulletin of Electrical Engineering and Informatics","publisher":"IAES","rank":"Q3","if":None,"apc":True,"apc_usd":250,"apc_label":"APC $250","fields":["Saintek","Komputer / AI"],"issn":"2089-3191","frequency":"Bimonthly","issues_per_year":6,"url":"https://beei.org","scope":"Teknik elektro informatika","doi_prefix":"10.11591/eei","note":"Scopus Q3"},
+    {"name":"International Journal on Advanced Science Engineering and IT","publisher":"INSIGHT","rank":"Q3","if":None,"apc":True,"apc_usd":400,"apc_label":"APC $400","fields":["Saintek","Komputer / AI"],"issn":"2088-5334","frequency":"Bimonthly","issues_per_year":6,"url":"https://ijaseit.insightsociety.org","scope":"Sains teknik IT","doi_prefix":"10.18517/ijaseit","note":"Scopus Q3"},
+    {"name":"Journal of Theoretical and Applied Information Technology","publisher":"JATIT","rank":"Q4","if":None,"apc":True,"apc_usd":400,"apc_label":"APC $400","fields":["Komputer / AI"],"issn":"1992-8645","frequency":"Semimonthly","issues_per_year":24,"url":"https://www.jatit.org","scope":"Teknologi informasi","doi_prefix":"","note":"Scopus Q4"},
+    {"name":"International Journal of Emerging Technology in Learning","publisher":"IJET","rank":"Q4","if":None,"apc":True,"apc_usd":500,"apc_label":"APC $500","fields":["Sosial & Humaniora"],"issn":"1863-0383","frequency":"Triannual","issues_per_year":3,"url":"https://online-journals.org/index.php/i-jet","scope":"Teknologi pembelajaran","doi_prefix":"10.3991/ijet","note":"Scopus Q4 — terbit 3x/tahun"},
+    {"name":"Jurnal Pendidikan IPA Indonesia","publisher":"UNNES","rank":"SINTA1","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Sosial & Humaniora","Saintek"],"issn":"2339-1286","frequency":"Quarterly","issues_per_year":4,"url":"https://journal.unnes.ac.id/nju/index.php/jpii","scope":"Pendidikan IPA","doi_prefix":"10.15294/jpii","note":"SINTA 1, Scopus Q2 — terbit 4x/tahun"},
+    {"name":"Jurnal Cakrawala Pendidikan","publisher":"UNY","rank":"SINTA1","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Sosial & Humaniora"],"issn":"0216-1370","frequency":"Triannual","issues_per_year":3,"url":"https://journal.uny.ac.id/index.php/cp","scope":"Pendidikan","doi_prefix":"10.21831/cp","note":"SINTA 1 — terbit 3x/tahun"},
+    {"name":"Kemas Jurnal Kesehatan Masyarakat","publisher":"UNNES","rank":"SINTA2","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Saintek","Umum"],"issn":"1858-1196","frequency":"Quarterly","issues_per_year":4,"url":"https://journal.unnes.ac.id/nju/index.php/kemas","scope":"Kesehatan masyarakat","doi_prefix":"10.15294/kemas","note":"SINTA 2 — terbit 4x/tahun"},
+    {"name":"Jurnal Teknologi dan Sistem Komputer","publisher":"UNDIP","rank":"SINTA2","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"2338-0403","frequency":"Quarterly","issues_per_year":4,"url":"https://jtsiskom.undip.ac.id","scope":"Teknologi sistem komputer","doi_prefix":"10.14710/jtsiskom","note":"SINTA 2 — terbit 4x/tahun"},
+    # ── SINTA 3 (terverifikasi sinta.kemdikbud.go.id) ──
+    {"name":"JuTISI (Jurnal Teknik Informatika dan Sistem Informasi)","publisher":"Universitas Kristen Maranatha","rank":"SINTA3","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"2443-2229","frequency":"Triannual","issues_per_year":3,"url":"https://journal.maranatha.edu/index.php/jutisi","scope":"Teknik informatika dan sistem informasi","doi_prefix":"10.28932/jutisi","note":"SINTA 3, SK 0041/E5.3/HM.01.00/2023 — terbit 3x/tahun, bebas biaya"},
+    {"name":"Edumatic: Jurnal Pendidikan Informatika","publisher":"Universitas Hamzanwadi","rank":"SINTA3","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI","Sosial & Humaniora"],"issn":"2549-7472","frequency":"Triannual","issues_per_year":3,"url":"https://e-journal.hamzanwadi.ac.id/index.php/edumatic","scope":"Pendidikan informatika, AI, IoT, data mining","doi_prefix":"10.29408/edumatic","note":"SINTA 3, SK 105/E/KPT/2022 — terbit 3x/tahun (April, Agustus, Desember)"},
+    {"name":"JOINTECS (Journal of Information Technology and Computer Science)","publisher":"Universitas Widya Gama Malang","rank":"SINTA3","if":None,"apc":False,"apc_usd":0,"apc_label":"No APC","fields":["Komputer / AI"],"issn":"2541-6448","frequency":"Triannual","issues_per_year":3,"url":"https://publishing-widyagama.ac.id/ejournal-v2/index.php/jointecs","scope":"Teknik informatika, AI, IoT, data mining, keamanan komputer","doi_prefix":"10.31328/jointecs","note":"SINTA 3 — terbit 3x/tahun (Januari, Mei, September)"},
+    # ── SINTA 4 (terverifikasi, terbit 4x/tahun untuk publikasi cepat) ──
+    {"name":"LEARNING: Jurnal Inovasi Pendidikan dan Pembelajaran","publisher":"P4I","rank":"SINTA4","if":None,"apc":True,"apc_usd":0,"apc_label":"APC rendah","fields":["Sosial & Humaniora"],"issn":"2777-0575","frequency":"Quarterly","issues_per_year":4,"url":"https://www.jurnalp4i.com/index.php/learning","scope":"Inovasi pendidikan dan pembelajaran","doi_prefix":"10.51878/learning","note":"SINTA 4 — terbit 4x/tahun (Februari, Mei, Agustus, November)"},
+    {"name":"EDUTECH: Jurnal Inovasi Pendidikan Berbantuan Teknologi","publisher":"P4I","rank":"SINTA4","if":None,"apc":True,"apc_usd":0,"apc_label":"APC rendah","fields":["Sosial & Humaniora","Komputer / AI"],"issn":"2775-2593","frequency":"Quarterly","issues_per_year":4,"url":"https://www.jurnalp4i.com/index.php/edutech","scope":"Pendidikan berbantuan teknologi","doi_prefix":"10.51878/edutech","note":"SINTA 4 — terbit 4x/tahun (Februari, Mei, Agustus, November)"},
+    {"name":"PAEDAGOGY: Jurnal Ilmu Pendidikan dan Psikologi","publisher":"P4I","rank":"SINTA4","if":None,"apc":True,"apc_usd":0,"apc_label":"APC rendah","fields":["Sosial & Humaniora"],"issn":"2775-7587","frequency":"Quarterly","issues_per_year":4,"url":"https://www.jurnalp4i.com/index.php/paedagogy","scope":"Ilmu pendidikan dan psikologi","doi_prefix":"10.51878/paedagogy","note":"SINTA 4 — terbit 4x/tahun (Maret, Juni, September, Desember)"},
 ]
 
 PUBLISHER_BLACKLIST = ["Frontiers","Hindawi"]
@@ -362,6 +385,54 @@ WORLD_REGIONS = [
     {"region":"Asia Tenggara","countries":"Indonesia, Malaysia, Thai.","journals":1200,"access":55},
     {"region":"Afrika","countries":"Afrika Selatan, Nigeria","journals":600,"access":38},
 ]
+
+
+# ── Realtime journal directory sources (v17) ──────────────────────────────────
+REALTIME_SOURCES = {
+    "Scimago": "https://www.scimagojr.com/journalsearch.php?q={issn}",
+    "DOAJ":    "https://doaj.org/search/journals?source=%7B%22query%22%3A%7B%22query_string%22%3A%7B%22query%22%3A%22{issn}%22%7D%7D%7D",
+    "Scopus":  "https://www.scopus.com/sourceid/{issn}",
+    "SINTA":   "https://sinta.kemdikbud.go.id/journals/?q={name}",
+    "Sherpa":  "https://v2.sherpa.ac.uk/cgi/search/publication?issn={issn}",
+}
+
+PUBLICATION_FREQUENCY = {
+    "Monthly":12, "Semimonthly":24, "Biweekly":26, "Bimonthly":6,
+    "Quarterly":4, "Triannual":3, "Biannual":2, "Annual":1, "Continuous":12,
+}
+
+ALL_RANKS = ["Q1", "Q2", "Q3", "Q4", "SINTA1", "SINTA2", "SINTA3", "SINTA4"]
+
+def get_realtime_links(journal: dict) -> dict:
+    """Generate realtime directory links for a journal (for verification)."""
+    issn = journal.get("issn", "").replace("-", "")
+    name = journal.get("name", "").replace(" ", "+")
+    return {
+        "Direct":  journal.get("url", ""),
+        "Scimago": REALTIME_SOURCES["Scimago"].format(issn=journal.get("issn","")),
+        "DOAJ":    f"https://doaj.org/search/journals?source=%7B%22query%22%3A%7B%22query_string%22%3A%7B%22query%22%3A%22{journal.get('issn','')}%22%7D%7D%7D",
+        "SINTA":   REALTIME_SOURCES["SINTA"].format(name=name),
+        "Sherpa":  REALTIME_SOURCES["Sherpa"].format(issn=journal.get("issn","")),
+    }
+
+def get_rank_distribution():
+    """Count journals by rank for visualization."""
+    dist = {r: 0 for r in ALL_RANKS}
+    for j in JOURNAL_DB:
+        r = j.get("rank", "")
+        if r in dist:
+            dist[r] += 1
+    return dist
+
+def get_journals_by_frequency(min_per_year=3, max_per_year=4):
+    """Filter journals publishing min-max times per year."""
+    return [j for j in JOURNAL_DB
+            if min_per_year <= j.get("issues_per_year", 0) <= max_per_year]
+
+def get_journals_by_rank(rank: str):
+    """Get all journals with specific rank."""
+    return [j for j in JOURNAL_DB if j.get("rank") == rank]
+
 
 # Hidden from UI — active in backend
 CORE_PROMPT_TEXT = """[Core IMRAD Intelligence v14 — Active in backend]"""
